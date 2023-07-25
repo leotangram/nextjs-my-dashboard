@@ -13,6 +13,9 @@ const getPokemons = async (
     name
   }))
 
+  // throw notFound()
+  throw new Error('Esto es un error que no debería suceder')
+
   return pokemons
 }
 
