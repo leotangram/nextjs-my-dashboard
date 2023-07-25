@@ -1,4 +1,4 @@
-import { PokemonGrid, PokemonsResponse, SimplePokemon } from '@/app/pokemons'
+import { PokemonGrid, PokemonsResponse, SimplePokemon } from '@/pokemons'
 
 const getPokemons = async (
   limit = 151,
@@ -14,7 +14,7 @@ const getPokemons = async (
   }))
 
   // throw notFound()
-  throw new Error('Esto es un error que no debería suceder')
+  // throw new Error('Esto es un error que no debería suceder')
 
   return pokemons
 }
