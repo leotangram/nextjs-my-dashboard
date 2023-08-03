@@ -1,6 +1,6 @@
 
-import { CartCounter } from '@/shopping-cart'
 import { Metadata } from 'next'
+import { CartCounter } from '@/shopping-cart'
 
 export const metadata: Metadata = {
   title: 'Shopping Cart',
