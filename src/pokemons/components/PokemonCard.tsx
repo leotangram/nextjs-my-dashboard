@@ -1,7 +1,9 @@
+'use client'
+import { useAppSelector } from '@/store'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
-import { IoHeartOutline } from 'react-icons/io5'
+import { IoHeart, IoHeartOutline } from 'react-icons/io5'
 
 interface PokemonCardProps {
   id: string
@@ -9,6 +11,8 @@ interface PokemonCardProps {
 }
 
 export const PokemonCard: FC<PokemonCardProps> = ({ id, name }) => {
+  const isFavorite = useAppSelector(state => !!state.pokemons[id])
+
   return (
     <div className="mx-auto right-0 mt-2 w-60">
       <div className="bg-white rounded overflow-hidden shadow-lg">
@@ -38,11 +42,11 @@ export const PokemonCard: FC<PokemonCardProps> = ({ id, name }) => {
             className="px-4 py-2 hover:bg-gray-100 flex items-center"
           >
             <div className="text-red-600">
-              <IoHeartOutline />
+              {isFavorite ? <IoHeart /> : <IoHeartOutline />}
             </div>
             <div className="pl-3">
               <p className="text-sm font-medium text-gray-800 leading-none">
-                No es favorito
+                {isFavorite ? 'Es favorito' : 'No es favorito'}
               </p>
               <p className="text-xs text-gray-500">View your campaigns</p>
             </div>
