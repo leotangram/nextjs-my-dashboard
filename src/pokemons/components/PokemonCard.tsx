@@ -1,5 +1,6 @@
 'use client'
-import { useAppSelector } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { toggleFavorite } from '@/store/pokemons/pokemonsSlice'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
@@ -12,6 +13,11 @@ interface PokemonCardProps {
 
 export const PokemonCard: FC<PokemonCardProps> = ({ id, name }) => {
   const isFavorite = useAppSelector(state => !!state.pokemons[id])
+  const dispatch = useAppDispatch()
+
+  const handleToggle = () => {
+    dispatch(toggleFavorite({ id, name }))
+  }
 
   return (
     <div className="mx-auto right-0 mt-2 w-60">
@@ -37,9 +43,9 @@ export const PokemonCard: FC<PokemonCardProps> = ({ id, name }) => {
           </div>
         </div>
         <div className="border-b">
-          <Link
-            href="/dashboard/main"
-            className="px-4 py-2 hover:bg-gray-100 flex items-center"
+          <button
+            className="px-4 py-2 hover:bg-gray-100 flex items-center w-full"
+            onClick={handleToggle}
           >
             <div className="text-red-600">
               {isFavorite ? <IoHeart /> : <IoHeartOutline />}
@@ -50,7 +56,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({ id, name }) => {
               </p>
               <p className="text-xs text-gray-500">View your campaigns</p>
             </div>
-          </Link>
+          </button>
         </div>
       </div>
     </div>
