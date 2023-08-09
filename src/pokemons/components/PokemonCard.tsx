@@ -12,7 +12,7 @@ interface PokemonCardProps {
 }
 
 export const PokemonCard: FC<PokemonCardProps> = ({ id, name }) => {
-  const isFavorite = useAppSelector(state => !!state.pokemons[id])
+  const isFavorite = useAppSelector(state => !!state.pokemons.favorites[id])
   const dispatch = useAppDispatch()
 
   const handleToggle = () => {
